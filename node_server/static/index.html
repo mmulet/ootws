@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An example HTML page" />
+    <meta name="keywords" content="HTML, example, meta tags" />
+    <meta name="author" content="Your Name" />
+    <title>Example HTML Page</title>
+  </head>
+  <body>
+    <h1>Hello, Ootws World!</h1>
+    <button id="invite_user" onclick="">Get Protected Resource!</button>
+    <div id="response_display"></div>
+  </body>
+  <script>
+    const button = document.getElementById("invite_user");
+    button.onclick = async () => {
+      const resource_request = await (
+        await fetch("/example_expensive_resource", {
+          method: "GET",
+        })
+      ).json();
+      console.log("Resource Request:", resource_request);
+      const reqsource_request_body = JSON.stringify(resource_request);
+      console.log("resquest body:", reqsource_request_body);
+      const authorization_request = await (
+        await fetch("http://localhost:3953/authorize_request", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: reqsource_request_body,
+        })
+      ).json();
+      console.log("Authorization Request:", authorization_request);
+
+      const final_response = await (
+        await fetch("/get_protected_resource", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(authorization_request),
+        })
+      ).text();
+      console.log("Final Response:", final_response);
+      document.getElementById("response_display").innerText = final_response;
+    };
+  </script>
+</html>

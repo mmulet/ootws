@@ -1,0 +1,14 @@
+title Request Authorization\n
+
+participant "ootws client" as Client
+participant "web browser" as Browser
+participant "WebServer" as Server
+participant "ootws db" as DB
+
+Browser ->Server:Request resource
+Server->Browser:Requests ootws \nvalid did:key\n, signs with server \ndid:web.
+Browser->Client: Forwards ootws request
+Client->Browser:Verifies request, \nand\n provides \ndid:key \nsigned response
+Browser->Server:Forwards response
+Server<->DB:Verifies that \ndid:key is valid
+Server->Browser:Serves resource

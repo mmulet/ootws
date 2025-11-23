@@ -1,0 +1,20 @@
+{
+  "nodeModulesDir": "auto",
+
+  "lint": {
+    "rules": {
+      "exclude": ["no-import-prefix", "no-unversioned-import"]
+    }
+  },
+  "compilerOptions": {
+    "lib": [
+      "deno.ns",
+      "deno.unstable",
+      "ESNext",
+      "DOM",
+      "ESNext.Decorators",
+      "es2024"
+    ]
+  },
+  "importMap": "../common_input_map.json"
+}

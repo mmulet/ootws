@@ -1,0 +1,4 @@
+//Not used, just to make common module type check work for the editor
+{
+  "importMap": "./common_input_map.json"
+}

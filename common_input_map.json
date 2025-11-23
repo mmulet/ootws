@@ -1,0 +1,14 @@
+{
+    "imports": {
+        "@dep/dids": "npm:dids@5.0.3",
+        "@dep/express": "npm:express@5.1.0",
+        "@types/express": "npm:@types/express@5.0.5",
+        "@dep/zod": "npm:zod@3.25.76",
+        "@dep/key-did-resolver": "npm:key-did-resolver@4.0.0",
+        "@dep/keytar": "npm:keytar@7.9.0",
+        "@dep/key-did-provider-ed25519": "npm:key-did-provider-ed25519@4.0.2",
+        "@common/": "./common/",
+        "@client/": "./local_client/src/",
+        "@node/": "./node_server/src/"
+    }
+}

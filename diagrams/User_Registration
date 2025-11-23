@@ -1,0 +1,14 @@
+title User Regisitration\n
+
+participant User A
+participant User B
+participant ootws node 1. Contains User A's key
+participant ootws node 2.
+
+User A<-User B:Requests an invite to ootws. Gives User A their did:key
+User A->ootws node 1. Contains User A's key:User A trusts B, So they sign a user registration for User B's did:key and send it to the ootws node
+note over User B,ootws node. Contains User A's 
+
+User A<-ootws node 1. Contains User A's key:Acknowledges the request and adds User B's did:key as a leaf to user A's key
+User B<-User A:Signals that User B is now added
+ootws node 2.<-ootws node 1. Contains User A's key:sync. Adds user b's did:key
