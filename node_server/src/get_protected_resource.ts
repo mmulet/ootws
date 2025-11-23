@@ -117,11 +117,13 @@ export const get_protected_resource = async (
   ootws_kv: Deno.Kv,
   authorized_requst_jws: DagJWS
 ) => {
+  // console.log("get_protected_resource called");
   const { signerDid, payload: authorizeRequest } = await verify_jws(
     authorized_requst_jws,
     AuthorizeRequestSchema
   );
   const now = Date.now();
+  // console.log("Request is signed an authorized by:", signerDid);
 
   if (!is_valid_timestamp(authorizeRequest.unix_timestamp, now)) {
     return {
@@ -137,6 +139,7 @@ export const get_protected_resource = async (
       error: "User not eligible to authorize requests.",
     };
   }
+  // console.log("User is in good standing:", signerDid);
 
   const { signerDid: asResourceRequestDid, payload: rescourceRequest } =
     await verify_jws(
@@ -149,6 +152,9 @@ export const get_protected_resource = async (
       error: "Resource request JWS not signed by this server.",
     };
   }
+
+  // console.log("Resource request is valid and from this server:",);
+
 
   const info: UserUsageInfo = JSON.parse(
     localStorage.getItem("user_usage_info_" + signerDid) ??
@@ -215,6 +221,7 @@ export const get_protected_resource = async (
       error: "Rate limit exceeded. You are now banned.",
     };
   }
+  // console.log("User is within usage limits:", signerDid);
 
   /**
    * @TODO switch the resource fetching logic below to actually fetch the resource
@@ -223,6 +230,7 @@ export const get_protected_resource = async (
    */
   rescourceRequest.resource_url;
   const text_encoder = new TextEncoder();
+  // console.log("Providing protected resource to:", signerDid);
 
   return {
     status: 200,

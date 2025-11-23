@@ -84,6 +84,7 @@ export const authorize_request = async (
    */
   ignore_limits = false
 ): Promise<AuthorizeRequestResult> => {
+  // console.log("Authorizing request JWS");
   const { signerDid, payload: resource_request } = await verify_jws(
     resource_request_jws,
     ResourceRequestSchema
