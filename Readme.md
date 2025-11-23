@@ -1,6 +1,17 @@
 Opener of The Ways: Protecting Against Malicious Website Crawlers Via DID Key-Based Authentication
 
+
+
 Or ootws for short (the w is silent).
+
+For the Apart Hackathon https://apartresearch.com/sprints/def-acc-hackathon-2025-11-21-to-2025-11-23
+
+Watch this video demo!
+
+https://github.com/user-attachments/assets/0410a2f5-2686-465e-b38e-6e602590f87f
+
+
+(I think we did pretty well considering how sick we were this weekend, lol)
 
 # Requirements
 Deno version 2.5.5 and higher.
